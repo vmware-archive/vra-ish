@@ -1,0 +1,46 @@
+{
+    "@type": "CatalogItemRequest",
+    "id": "7aaf9baf-aa4e-47c4-997b-edd7c7983a5b",
+    "iconId": "cafe_default_icon_genericCatalogItem",
+    "version": 6,
+    "requestNumber": 8,
+    "state": "SUCCESSFUL",
+    "description": "API test",
+    "reasons": null,
+    "requestedFor": "csummers@example.com",
+    "requestedBy": "csummers@example.com",
+    "organization": {
+        "tenantRef": "mycompany",
+        "tenantLabel": "mycompany",
+        "subtenantRef": "c0683388-6db2-4cb5-9033-b24d15ad3766",
+        "subtenantLabel": "Demo Group"
+    },
+    "requestorEntitlementId": "1b409157-152c-43c4-b4cc-1cdef7f6adf8",
+    "preApprovalId": null,
+    "postApprovalId": null,
+    "dateCreated": "2015-07-29T13:50:33.689Z",
+    "lastUpdated": "2015-07-29T13:55:35.951Z",
+    "dateSubmitted": "2015-07-29T13:50:33.689Z",
+    "dateApproved": null,
+    "dateCompleted": "2015-07-29T13:55:35.949Z",
+    "quote": {},
+    "requestCompletion": {
+        "requestCompletionState": "SUCCESSFUL",
+        "completionDetails": null
+    },
+    "requestData": {
+        "something": "goes in here"
+    },
+    "retriesRemaining": 3,
+    "requestedItemName": "Linux",
+    "requestedItemDescription": "Linux blueprint for API demo",
+    "stateName": "Successful",
+    "approvalStatus": "POST_APPROVED",
+    "executionStatus": "STOPPED",
+    "waitingStatus": "NOT_WAITING",
+    "phase": "SUCCESSFUL",
+    "catalogItemRef": {
+        "id": "7c8275d6-1bd6-452a-97c4-d6c053e4baa4",
+        "label": "Linux"
+    }
+}

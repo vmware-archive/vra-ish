@@ -49,7 +49,8 @@ public class VrCatalogTest {
 	public void testCheckToken() {
 		ResponseEntity<Map<String, String>> token = getToken();
 		assertNotNull(token);
-		assertEquals(HttpStatus.NO_CONTENT, checkToken(token.getBody().get("id")));
+		assertEquals(HttpStatus.NO_CONTENT, checkToken(token.getBody()
+				.get("id")));
 
 		assertEquals(HttpStatus.FORBIDDEN, checkToken(null));
 	}
@@ -65,11 +66,63 @@ public class VrCatalogTest {
 	}
 
 	@Test
+	public void testGetTemplateRequest() {
+		ResponseEntity<String> resp = getTemplateRequest(VrController.TOKEN,
+				VrController.CATALOG_ID);
+		assertNotNull(resp);
+		assertEquals(HttpStatus.OK, resp.getStatusCode());
+		String temp = resp.getBody().toString();
+		assertNotNull(temp);
+		assertEquals("sioningReq", temp.substring(70, 80));
+	}
+
+	@Test
+	public void testPostRequest() {
+		ResponseEntity<String> resp = postRequest(VrController.TOKEN,
+				VrController.CATALOG_ID, VrController.getJson("template.json"));
+		assertNotNull(resp);
+		assertEquals(HttpStatus.CREATED, resp.getStatusCode());
+		String temp = resp.getBody().toString();
+		assertNotNull(temp);
+		assertEquals("b-edd7c798", temp.substring(70, 80));
+	}
+
+	@Test
+	public void testRequestDetails() {
+		ResponseEntity<String> dets = getRequestDetails(VrController.TOKEN,
+				VrController.REQUEST_ID);
+		assertNotNull(dets);
+		assertEquals(HttpStatus.OK, dets.getStatusCode());
+		assertEquals("b-edd7c798", dets.getBody().substring(70, 80));
+	}
+
+	// TODO string these together by processing responses
+	@Test
 	public void testUseCase() {
+		// get an auth token
 		Map<String, String> token = getToken().getBody();
 		assertNotNull(token);
+
+		// make sure it's valid
 		assertEquals(HttpStatus.NO_CONTENT, checkToken(token.get("id")));
+
+		// make sure it's still valid
 		assertNotNull(getCatalog(token.get("id")));
+
+		// get the catalog
+		assertNotNull(getCatalog(token.get("id")));
+
+		// get a template to request something from the catalog
+		assertNotNull(getTemplateRequest(token.get("id"),
+				VrController.CATALOG_ID));
+
+		// use the template to make the request
+		assertNotNull(postRequest(token.get("id"), VrController.CATALOG_ID,
+				VrController.getJson("template.json")));
+
+		// check on the request
+		assertNotNull(getRequestDetails(token.get("id"),
+				VrController.REQUEST_ID));
 	}
 
 	private ResponseEntity<Map<String, String>> getToken() {
@@ -87,16 +140,47 @@ public class VrCatalogTest {
 		return restTemplate.exchange(URI + "/identity/api/tokens/" + token,
 				HttpMethod.GET, null, stringType).getStatusCode();
 	}
-	
+
 	private ResponseEntity<String> getCatalog(String token) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", " Bearer " + token);
 		HttpEntity<String> he = new HttpEntity<String>(headers);
 
-		return restTemplate
-				.exchange(
-						URI
-								+ "/catalog-service/api/consumer/entitledCatalogItemViews",
-						HttpMethod.GET, he, String.class);
+		return restTemplate.exchange(URI
+				+ "/catalog-service/api/consumer/entitledCatalogItemViews",
+				HttpMethod.GET, he, String.class);
+	}
+
+	private ResponseEntity<String> getTemplateRequest(String token,
+			String catalogId) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", " Bearer " + token);
+		HttpEntity<String> he = new HttpEntity<String>(headers);
+
+		return restTemplate.exchange(URI
+				+ "/service/api/consumer/entitledCatalogItems/" + catalogId
+				+ "/requests/template", HttpMethod.GET, he, String.class);
+	}
+
+	private ResponseEntity<String> postRequest(String token, String catalogId,
+			String body) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", " Bearer " + token);
+		HttpEntity<String> he = new HttpEntity<String>(body, headers);
+
+		return restTemplate.exchange(URI
+				+ "/service/api/consumer/entitledCatalogItems/ " + catalogId
+				+ "/requests", HttpMethod.POST, he, String.class);
+	}
+
+	private ResponseEntity<String> getRequestDetails(String token,
+			String requestId) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", " Bearer " + token);
+		HttpEntity<String> he = new HttpEntity<String>(headers);
+
+		return restTemplate.exchange(URI
+				+ "/catalog-service/api/consumer/requests/" + requestId,
+				HttpMethod.GET, he, String.class);
 	}
 }
