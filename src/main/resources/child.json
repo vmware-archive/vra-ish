@@ -1,0 +1,197 @@
+{
+    "links": [],
+    "content": [
+        {
+            "@type": "CatalogResourceView",
+            "links": [
+                {
+                    "@type": "link",
+                    "rel": "GET: Parent Resource",
+                    "href": "https://$host/catalogservice/api/consumer/resourceViews/c4d3db3e-e397-44ff-a1c9-0ecebdba12f4"
+                },
+                {
+                    "@type": "link",
+                    "rel": "GET Template:{com.vmware.csp.component.iaas.proxy.provider@resource.action.name.machine.ChangeLease}",
+                    "href": "https://$host/catalogservice/api/consumer/resources/dd37b7a1-829c-4773-b5beb229453eca4a/actions/b5739e30-871d-48c7-9012-f2a7cf431dc1/requests/template"
+                },
+                {
+                    "@type": "link",
+                    "rel": "POST:{com.vmware.csp.component.iaas.proxy.provider@resource.action.name.machine.ChangeLease}",
+                    "href": "https://$host/catalogservice/api/consumer/resources/dd37b7a1-829c-4773-b5beb229453eca4a/actions/b5739e30-871d-48c7-9012-f2a7cf431dc1/requests"
+                },
+                {
+                    "@type": "link",
+                    "rel": "GET Template:{com.vmware.csp.component.iaas.proxy.provider@resource.action.name.machine.PowerOff}",
+                    "href": "https://$host/catalogservice/api/consumer/resources/dd37b7a1-829c-4773-b5beb229453eca4a/actions/02bad06d-f92b-4cf8-b964-37bb5d57be38/requests/template"
+                },
+                {
+                    "@type": "link",
+                    "rel": "POST:{com.vmware.csp.component.iaas.proxy.provider@resource.action.name.machine.PowerOff}",
+                    "href": "https://$host/catalogservice/api/consumer/resources/dd37b7a1-829c-4773-b5beb229453eca4a/actions/02bad06d-f92b-4cf8-b964-37bb5d57be38/requests"
+                }
+            ],
+            "resourceId": "dd37b7a1-829c-4773-b5be-b229453eca4a",
+            "iconId": "cafe_default_icon_genericCatalogItem",
+            "name": "DEMO-002",
+            "description": null,
+            "status": "On",
+            "catalogItemId": null,
+            "catalogItemLabel": null,
+            "requestId": null,
+            "resourceType": "{com.vmware.csp.component.iaas.proxy.provider@resource.type.registration.name.Infrastructure.Virtual}",
+            "owners": [
+                "Connie Summers"
+            ],
+            "businessGroupId": "c0683388-6db2-4cb5-9033-b24d15ad3766",
+            "tenantId": "mycompany",
+            "dateCreated": "2015-07-29T13:54:58.804Z",
+            "lastUpdated": "2015-07-29T13:55:01.371Z",
+            "lease": {
+                "start": "2015-07-29T13:51:33.000Z"
+            },
+            "costs": {
+                "leaseRate": {
+                    "type": "moneyTimeRate",
+                    "cost": {
+                        "type": "money",
+                        "currencyCode": "USD",
+                        "amount": 0
+                    },
+                    "basis": {
+                        "type": "timeSpan",
+                        "unit": "DAYS",
+                        "amount": 1
+                    }
+                }
+            },
+            "costToDate": {
+                "type": "money",
+                "currencyCode": "USD",
+                "amount": 0
+            },
+            "totalCost": null,
+            "parentResourceId": "c4d3db3e-e397-44ff-a1c9-0ecebdba12f4",
+            "hasChildren": false,
+            "data": {
+                "ChangeLease": true,
+                "ConnectViaRdp": true,
+                "ConnectViaVmrc": true,
+                "DISK_VOLUMES": [
+                    {
+                        "componentTypeId": "com.vmware.csp.component.iaas.proxy.provider",
+                        "componentId": null,
+                        "classId": "dynamicops.api.model.DiskInputModel",
+                        "typeFilter": null,
+                        "data": {
+                            "DISK_CAPACITY": 6,
+                            "DISK_INPUT_ID": "DISK_INPUT_ID1"
+                        }
+                    },
+                    {
+                        "componentTypeId": "com.vmware.csp.component.iaas.proxy.provider",
+                        "componentId": null,
+                        "classId": "dynamicops.api.model.DiskInputModel",
+                        "typeFilter": null,
+                        "data": {
+                            "DISK_CAPACITY": 6,
+                            "DISK_INPUT_ID": "DISK_INPUT_ID2"
+                        }
+                    }
+                ],
+                "Destroy": true,
+                "EXTERNAL_REFERENCE_ID": "vm-38153",
+                "Expire": true,
+                "IS_COMPONENT_MACHINE": false,
+                "MachineBlueprintName": "system_blueprint_vsphere",
+                "MachineCPU": 1,
+                "MachineDailyCost": 0,
+                "MachineDestructionDate": null,
+                "MachineExpirationDate": null,
+                "MachineGroupName": "Demo Group",
+                "MachineGuestOperatingSystem": null,
+                "MachineInterfaceDisplayName": "vSphere (vCenter)",
+                "MachineInterfaceType": "vSphere",
+                "MachineMemory": 4096,
+                "MachineName": "DEMO-002",
+                "MachineReservationName": "vCenter55",
+                "MachineStorage": 12,
+                "MachineType": "Virtual",
+                "NETWORK_LIST": [
+                    {
+                        "componentTypeId": "com.vmware.csp.component.iaas.proxy.provider",
+                        "componentId": null,
+                        "classId": "dynamicops.api.model.NetworkViewModel",
+                        "typeFilter": null,
+                        "data": {
+                            "NETWORK_MAC_ADDRESS": "00:50:56:ba:6b:85",
+                            "NETWORK_NAME": "VM Network SQA"
+                        }
+                    }
+                ],
+                "PowerOff": true,
+                "Reboot": true,
+                "Reconfigure": true,
+                "Reprovision": true,
+                "Reset": true,
+                "SNAPSHOT_LIST": [],
+                "Shutdown": true,
+                "Suspend": true,
+                "ip_address": "10.118.194.213",
+                "machineId": "f3579990-a3c4-4e17-9593-1f8893636876"
+            }
+        },
+        {
+            "@type": "CatalogResourceView",
+            "links": [
+                {
+                    "@type": "link",
+                    "rel": "GET: Parent Resource",
+                    "href": "https://$host/catalogservice/api/consumer/resourceViews/c4d3db3e-e397-44ff-a1c9-0ecebdba12f4"
+                },
+                {
+                    "@type": "link",
+                    "rel": "GET Template:{com.vmware.csp.component.network.service@resource.action.destroy.name,[{{com.vmware.csp.component.iaas.proxy.provider@network.network.type.registration.name.Infrastructure.Network.Network.Existing}}]}",
+                    "href": "https://$host/catalogservice/api/consumer/resources/f735b57a-fe6f-4108-876f-1c1055ca2cec/actions/ec5c522d-7b5b-4d0b-b9f2-1aedf01a2f0c/requests/template"
+                },
+                {
+                    "@type": "link",
+                    "rel": "POST:{com.vmware.csp.component.network.service@resource.action.destroy.name,[{{com.vmware.csp.component.iaas.proxy.provider@network.network.type.registration.name.Infrastructure.Network.Network.Existing}}]}",
+                    "href": "https://$host/catalogservice/api/consumer/resources/f735b57a-fe6f-4108-876f-1c1055ca2cec/actions/ec5c522d-7b5b-4d0b-b9f2-1aedf01a2f0c/requests"
+                }
+            ],
+            "resourceId": "f735b57a-fe6f-4108-876f-1c1055ca2cec",
+            "iconId": "cafe_default_icon_genericCatalogItem",
+            "name": "Existing Network",
+            "description": null,
+            "status": null,
+            "catalogItemId": null,
+            "catalogItemLabel": null,
+            "requestId": null,
+            "resourceType": "{com.vmware.csp.component.iaas.proxy.provider@network.network.type.registration.name.Infrastructure.Network.Network.Existing}",
+            "owners": [
+                "Connie Summers"
+            ],
+            "businessGroupId": "c0683388-6db2-4cb5-9033-b24d15ad3766",
+            "tenantId": "mycompany",
+            "dateCreated": "2015-07-29T13:55:14.095Z",
+            "lastUpdated": "2015-07-29T13:55:17.315Z",
+            "lease": null,
+            "costs": null,
+            "costToDate": null,
+            "totalCost": null,
+            "parentResourceId": "c4d3db3e-e397-44ff-a1c9-0ecebdba12f4",
+            "hasChildren": false,
+            "data": {
+                "Description": " ",
+                "Name": "Existing Network"
+            }
+        }
+    ],
+    "metadata": {
+        "size": 20,
+        "totalElements": 2,
+        "totalPages": 1,
+        "number": 1,
+        "offset": 0
+    }
+}

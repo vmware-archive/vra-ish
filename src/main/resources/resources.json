@@ -1,0 +1,65 @@
+{
+    "links": [],
+    "content": [
+        {
+            "@type": "CatalogResourceView",
+            "links": [
+                {
+                    "@type": "link",
+                    "rel": "GET: Catalog Item",
+                    "href": "https://$host/catalogservice/api/consumer/entitledCatalogItemViews/7c8275d6-1bd6-452a-97c4-d6c053e4baa4"
+                },
+                {
+                    "@type": "link",
+                    "rel": "GET: Request",
+                    "href": "https://$host/catalogservice/api/consumer/requests/7aaf9baf-aa4e-47c4-997b-edd7c7983a5b"
+                },
+                {
+                    "@type": "link",
+                    "rel": "GET Template: {com.vmware.csp.component.cafe.composition@resource.action.deployment.destroy.name}",
+                    "href": "https://$host/catalogservice/api/consumer/resources/c4d3db3e-e397-44ff-a1c9-0ecebdba12f4/actions/416e6bb1-3357-448b-8396-e268d5f7343b/requests/template"
+                },
+                {
+                    "@type": "link",
+                    "rel": "POST: {com.vmware.csp.component.cafe.composition@resource.action.deployment.destroy.name}",
+                    "href": "https://$host/catalogservice/api/consumer/resources/c4d3db3e-e397-44ff-a1c9-0ecebdba12f4/actions/416e6bb1-3357-448b-8396-e268d5f7343b/requests"
+                },
+                {
+                    "@type": "link",
+                    "rel": "GET: Child Resources",
+                    "href": "https://$host/catalogservice/api/consumer/resourceViews?managedOnly=false&withExtendedData=true&withOperations=true&%24filter=parentResource%20eq%20%27c4d3db3e-e397-44ffa1c9-0ecebdba12f4%27"
+                }
+            ],
+            "resourceId": "c4d3db3e-e397-44ff-a1c9-0ecebdba12f4",
+            "iconId": "cafe_default_icon_genericCatalogItem",
+            "name": "Linux-80813151",
+            "description": null,
+            "status": null,
+            "catalogItemId": "7c8275d6-1bd6-452a-97c4-d6c053e4baa4",
+            "catalogItemLabel": "Linux",
+            "requestId": "7aaf9baf-aa4e-47c4-997b-edd7c7983a5b",
+            "resourceType": "{com.vmware.csp.component.cafe.composition@resource.type.deployment.name}",
+            "owners": [
+                "Connie Summers"
+            ],
+            "businessGroupId": "c0683388-6db2-4cb5-9033-b24d15ad3766",
+            "tenantId": "mycompany",
+            "dateCreated": "2015-07-29T13:51:36.368Z",
+            "lastUpdated": "2015-07-29T13:55:35.963Z",
+            "lease": null,
+            "costs": null,
+            "costToDate": null,
+            "totalCost": null,
+            "parentResourceId": null,
+            "hasChildren": true,
+            "data": {}
+        }
+    ],
+    "metadata": {
+        "size": 20,
+        "totalElements": 1,
+        "totalPages": 1,
+        "number": 1,
+        "offset": 0
+    }
+}

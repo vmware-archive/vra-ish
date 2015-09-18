@@ -96,6 +96,33 @@ public class VrCatalogTest {
 		assertEquals("b-edd7c798", dets.getBody().substring(70, 80));
 	}
 
+	@Test
+	public void testResources() {
+		ResponseEntity<String> dets = getResources(VrController.TOKEN,
+				VrController.REQUEST_ID);
+		assertNotNull(dets);
+		assertEquals(HttpStatus.OK, dets.getStatusCode());
+		assertEquals("talogResou", dets.getBody().substring(70, 80));
+	}
+
+	@Test
+	public void testChild() {
+		ResponseEntity<String> child = getChild(VrController.TOKEN,
+				VrController.RESOURCE_ID);
+		assertNotNull(child);
+		assertEquals(HttpStatus.OK, child.getStatusCode());
+		assertEquals(" \"@type\": ", child.getBody().substring(150, 160));
+	}
+
+	@Test
+	public void testActionTemplate() {
+		ResponseEntity<String> temp = getActionTemplate(VrController.TOKEN,
+				VrController.RESOURCE_ID, VrController.ACTION_ID);
+		assertNotNull(temp);
+		assertEquals(HttpStatus.OK, temp.getStatusCode());
+		assertEquals("e resolved", temp.getBody().substring(50, 60));
+	}
+
 	// TODO string these together by processing responses
 	@Test
 	public void testUseCase() {
@@ -123,6 +150,16 @@ public class VrCatalogTest {
 		// check on the request
 		assertNotNull(getRequestDetails(token.get("id"),
 				VrController.REQUEST_ID));
+
+		// see the resources created by the request
+		assertNotNull(getResources(token.get("id"), VrController.REQUEST_ID));
+
+		// see the details on a resource created by the request
+		assertNotNull(getChild(token.get("id"), VrController.RESOURCE_ID));
+
+		// get an action template
+		assertNotNull(getActionTemplate(token.get("id"),
+				VrController.RESOURCE_ID, VrController.ACTION_ID));
 	}
 
 	private ResponseEntity<Map<String, String>> getToken() {
@@ -181,6 +218,38 @@ public class VrCatalogTest {
 
 		return restTemplate.exchange(URI
 				+ "/catalog-service/api/consumer/requests/" + requestId,
+				HttpMethod.GET, he, String.class);
+	}
+
+	private ResponseEntity<String> getResources(String token, String requestId) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", " Bearer " + token);
+		HttpEntity<String> he = new HttpEntity<String>(headers);
+
+		return restTemplate.exchange(URI
+				+ "/catalog-service/api/consumer/requests/" + requestId
+				+ "/resourceViews", HttpMethod.GET, he, String.class);
+	}
+
+	private ResponseEntity<String> getChild(String token, String resourceId) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", " Bearer " + token);
+		HttpEntity<String> he = new HttpEntity<String>(headers);
+
+		return restTemplate.exchange(URI
+				+ "/catalogservice/api/consumer/resourceViews/" + resourceId,
+				HttpMethod.GET, he, String.class);
+	}
+
+	private ResponseEntity<String> getActionTemplate(String token,
+			String resourceId, String actionId) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", " Bearer " + token);
+		HttpEntity<String> he = new HttpEntity<String>(headers);
+
+		return restTemplate.exchange(URI
+				+ "/catalog-service/api/consumer/resources/" + resourceId
+				+ "/actions/" + actionId + "/requests/template",
 				HttpMethod.GET, he, String.class);
 	}
 }

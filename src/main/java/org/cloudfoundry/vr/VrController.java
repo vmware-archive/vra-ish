@@ -28,6 +28,8 @@ public class VrController {
 	public static final String TOKEN = "MTM5MTI1OTg5MDQwMzozNDQyZWMxZmQ5ZDliODUzMGFiMjp0ZW5hbnQ6cWV1c2VybmFtZTjYjY1ZjhiODI2OTg4ODU3M2UwOTUwOWRkMjlmYWRjNWQ4NjJkOTk1YmE3MTg1MWZhOTc2MjEyYjYxZmU3YTVhZDcwNzM3ZTg3ZDNjNDk2ZDlmNA==";
 	public static final String CATALOG_ID = "dc808d12-3786-4f7c-b5a1-d5f997c8ad66";
 	public static final String REQUEST_ID = "7aaf9baf-aa4e-47c4-997b-edd7c7983a5b";
+	public static final String RESOURCE_ID = "c4d3db3e-e397-44ffa1c9-0ecebdba12f4";
+	public static final String ACTION_ID = "02bad06d-f92b-4cf8-b964-37bb5d57be38";
 
 	@RequestMapping(value = "/identity/api/tokens ", method = RequestMethod.POST)
 	public HttpEntity<Map<String, String>> tokens(
@@ -75,7 +77,7 @@ public class VrController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		return new ResponseEntity<>(getJson("template.json"), HttpStatus.OK);
+		return new ResponseEntity<>(getJson("resourceTemplate.json"), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/service/api/consumer/entitledCatalogItems/{catalogId}/requests", method = RequestMethod.POST)
@@ -106,6 +108,53 @@ public class VrController {
 		}
 
 		return new ResponseEntity<>(getJson("request.json"), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/catalog-service/api/consumer/requests/{requestId}/resourceViews", method = RequestMethod.GET)
+	public HttpEntity<String> requestResources(
+			@RequestHeader("Authorization") String token,
+			@PathVariable String requestId) {
+		if (token == null) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+
+		if (requestId == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<>(getJson("resources.json"), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/catalog-service/api/consumer/resources/{resourceId}/actions/{actionId}/requests/template", method = RequestMethod.GET)
+	public HttpEntity<String> actionTemplate(
+			@RequestHeader("Authorization") String token,
+			@PathVariable String resourceId, @PathVariable String actionId) {
+
+		if (token == null) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+
+		if (resourceId == null || actionId == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<>(getJson("actionTemplate.json"), HttpStatus.OK);
+	}
+
+	// TODO, use correct query string as per api
+	@RequestMapping(value = "/catalogservice/api/consumer/resourceViews/{resourceId}", method = RequestMethod.GET)
+	public HttpEntity<String> childResources(
+			@RequestHeader("Authorization") String token,
+			@PathVariable String resourceId) {
+		if (token == null) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+
+		if (resourceId == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<>(getJson("child.json"), HttpStatus.OK);
 	}
 
 	public static String getJson(String fileName) {
